@@ -51,7 +51,7 @@ public class Cuadricula extends JLabel{
         columna=0;
     }
     public boolean isVacio() {
-        return (!isAgente()&!isAmenaza()&!isObstaculo()&!isRecurso());
+        return (!isAgente()&!isAmenaza()&!isObstaculo()&!isRecurso()&!isBase());
     }
     public void reducirVida(){
         vida--;

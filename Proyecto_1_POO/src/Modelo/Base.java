@@ -22,16 +22,18 @@ public class Base extends Cuadricula{
         }
     }
     public Cuadricula[][] actionPerformed(Cuadricula[][] mapa){
-        if(mapa[0][0].getCantidadAgentesBase()>0){
-            if (mapa[0][1].isVacio()){
-                mapa[0][1]=mapa[0][0].getAgente();
-                mapa[0][1].setColumna(1);
+            if (!agentes.isEmpty()){
+                if (mapa[0][1].isVacio()){
+                    AgenteBase agente=mapa[0][0].getAgente();
+                    mapa[1][0]=agente.getAgente();
+                    mapa[0][1].setColumna(1);
+                }
+                if (mapa[1][0].isVacio()){
+                    AgenteBase agente=mapa[0][0].getAgente();
+                    mapa[1][0]=agente.getAgente();
+                    mapa[1][0].setFila(1);
+                }
             }
-            if (mapa[1][0].isVacio()){
-                mapa[1][0]=mapa[0][0].getAgente();
-                mapa[1][0].setFila(1);
-            }
-        }
         return mapa;
     }
     public void addAgente(AgenteBase agente){
