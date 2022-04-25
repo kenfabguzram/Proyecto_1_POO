@@ -15,13 +15,13 @@ public class Cuadricula extends JLabel{
     protected int cantidadRecurso;
     protected int vida;
     protected int indiceDireccion;
-    protected boolean recurso,obstaculo,amenaza,agente,base,atacando;
+    protected boolean recurso,obstaculo,amenaza,agente,base,accionado,atacando;
     public Cuadricula(int fila,int columna){
         super();
         setOpaque(true);
         setBackground(Color.white);
         setBorder(BorderFactory.createLineBorder(Color.black));
-        recurso=obstaculo=amenaza=agente=base=atacando=false;
+        recurso=obstaculo=amenaza=agente=base=atacando=accionado=false;
         vida=cantidadRecurso=10;
         this.fila=fila;
         this.columna=columna;
@@ -29,6 +29,18 @@ public class Cuadricula extends JLabel{
     public void addAgente(AgenteBase agente){}
     public Cuadricula[][] actionPerformed(Cuadricula[][] mapa){
         return mapa;
+    }
+    public boolean isAccionado() {
+        return accionado;
+    }
+    public void setAccionado(boolean accionado) {
+        this.accionado = accionado;
+    }
+    public boolean isAtacando() {
+        return atacando;
+    }
+    public void setAtacando(boolean atacando) {
+        this.atacando = atacando;
     }
     public void setVacio(){
         setBackground(Color.WHITE);

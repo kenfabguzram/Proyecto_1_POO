@@ -11,7 +11,7 @@ public class Base extends Cuadricula{
         this.setBackground(Color.black);
         rnd=new Random();
         agentes=new ArrayDeque<AgenteBase>(); 
-        for(int i=0;i<20;i++){
+        for(int i=0;i<1;i++){
             int azar=rnd.nextInt(1 - 0 + 1) + 0;
             if(azar==0){
                 agentes.add(new AgenteDefensor(0,0));
@@ -40,9 +40,7 @@ public class Base extends Cuadricula{
         }
     }
     public AgenteBase getAgente(){
-        AgenteBase agente=agentes.poll();
-        agente.setRecurso(false);
-        return agente;
+        return agentes.poll();
     }
     public int getCantidadAgentesBase(){
         return agentes.size();

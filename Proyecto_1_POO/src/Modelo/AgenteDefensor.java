@@ -13,6 +13,9 @@ public class AgenteDefensor extends AgenteBase{
         super(fila,columna);
     }
     protected AgenteBase retornarAgente(int fila, int columna){
+        if(fila==0 & columna==0){
+            System.out.println("Este es un agente defensor imposible");
+        }
         return new AgenteDefensor(fila,columna);
     }
     protected Cuadricula[][] reaccionarAAmenaza(Cuadricula[][] mapa){return mapa;}

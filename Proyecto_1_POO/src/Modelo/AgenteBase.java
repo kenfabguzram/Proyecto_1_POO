@@ -9,7 +9,7 @@ import java.util.Random;
  *
  * @author Kendall_Guzmán
  */
-public class AgenteBase extends Cuadricula implements Cloneable{
+public class AgenteBase extends Cuadricula{
     protected Random rnd;
     protected int[] direccionesFila;
     protected int[] direccionesColumna;
@@ -27,10 +27,13 @@ public class AgenteBase extends Cuadricula implements Cloneable{
     }
     public Cuadricula[][] actionPerformed(Cuadricula[][] mapa){
         if(fila<49 & fila>0 & columna<49 & columna>0){
-            mapa=validarCuadriculasAdyacentes(mapa,0,8,9,-1,-1);
+            mapa=validarCuadriculasAdyacentes(mapa,0,8,9,10,10);
         }
         if (fila==0){
             if(columna==49){
+                mapa=validarCuadriculasAdyacentes(mapa,3,7,4,-1,-1);
+            }
+            if(columna==0){
                 mapa=validarCuadriculasAdyacentes(mapa,3,7,4,-1,-1);
             }
             else{
@@ -62,6 +65,12 @@ public class AgenteBase extends Cuadricula implements Cloneable{
     protected Cuadricula[][] validarCuadriculasAdyacentes(Cuadricula[][] mapa,int inicio,int finalizar,int excluir1,int excluir2,int excluir3){
         for (int i=inicio;i<finalizar;i++){
             if (i!=excluir1 & i!=excluir2 & i!=excluir3){
+                System.out.println("------------------------------------------------------------------------");
+                System.out.println(fila);
+                System.out.println(columna);
+                System.out.println(i);
+                System.out.println(direccionesFila8[i]);
+                System.out.println(direccionesColumna8[i]);
                 if(mapa[fila+direccionesFila8[i]][columna+direccionesColumna8[i]].isAgente()){
                     if (isRecurso()){
                         if(mapa[fila+direccionesFila8[i]][columna+direccionesColumna8[i]].isRecurso()){
@@ -146,8 +155,21 @@ public class AgenteBase extends Cuadricula implements Cloneable{
     }
     protected Cuadricula[][] reaccionarAVacio(Cuadricula[][] mapa){
 
-        mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]]=this.retornarAgente(fila+direccionesFila[indiceDireccion],columna+direccionesColumna[indiceDireccion]);
-        mapa[fila][columna]=new Cuadricula(fila,columna);
+        if (!mapa[fila][columna].isAccionado()){
+            System.out.print("fila ");
+            System.out.println(fila);
+            System.out.print("columna ");
+            System.out.println(columna);
+            System.out.print("indice ");
+            System.out.println(indiceDireccion);
+            System.out.print("fila siguiente ");
+            System.out.println(direccionesFila[indiceDireccion]);
+            System.out.print("columna siguiente ");
+            System.out.println(direccionesColumna[indiceDireccion]);
+            mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]]=this.retornarAgente(fila+direccionesFila[indiceDireccion],columna+direccionesColumna[indiceDireccion]);
+            mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]].setAccionado(true);
+            mapa[fila][columna]=new Cuadricula(fila,columna);
+        }
         if(!this.isRecurso()){
             sortearDireccionAzar();
         }
@@ -198,7 +220,6 @@ public class AgenteBase extends Cuadricula implements Cloneable{
         }
         else{
             cambiarDireccionDerechaAbajo();
-            mapa=caminar(mapa);
         }
         return mapa;
     }

@@ -31,8 +31,8 @@ public class Mapa extends JPanel{
         colocarAmenazas();
         colocarBase();
         cambiarColoresCuadriculas();
-        agregarCuadriculasAlPanel();
 
+        agregarCuadriculasAlPanel();
     }
     private void generarCuadriculas(){
         for(int i = 0; i < 50; i++){
@@ -103,21 +103,37 @@ public class Mapa extends JPanel{
         }
     }
     public void actionPerformed(){
+
         removeAll();
         revalidate();
         repaint();
         actualizarDatosCuadriculas();
-        
+        desaccionarBotones();
         cambiarColoresCuadriculas();
         agregarCuadriculasAlPanel();
         repaint();
     }
     private void actualizarDatosCuadriculas(){
+    
         for(int i = 0; i < 50; i++){
             for(int j = 0; j < 50; j++){
+
                 mapa=mapa[i][j].actionPerformed(mapa);
+
             }
         }
+
+    }
+    private void desaccionarBotones(){
+    
+        for(int i = 0; i < 50; i++){
+            for(int j = 0; j < 50; j++){
+
+                mapa[i][j].setAccionado(false);
+
+            }
+        }
+
     }
     private void cambiarColoresCuadriculas(){
         for(int i = 0; i < 50; i++){
