@@ -157,16 +157,6 @@ public class AgenteBase extends Cuadricula{
     protected Cuadricula[][] reaccionarAVacio(Cuadricula[][] mapa){
 
         if (!mapa[fila][columna].isAccionado()){
-            System.out.print("fila ");
-            System.out.println(fila);
-            System.out.print("columna ");
-            System.out.println(columna);
-            System.out.print("indice ");
-            System.out.println(indiceDireccion);
-            System.out.print("fila siguiente ");
-            System.out.println(direccionesFila[indiceDireccion]);
-            System.out.print("columna siguiente ");
-            System.out.println(direccionesColumna[indiceDireccion]);
             mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]]=this.retornarAgente(fila+direccionesFila[indiceDireccion],columna+direccionesColumna[indiceDireccion]);
             mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]].setAccionado(true);
             mapa[fila][columna]=new Cuadricula(fila,columna);
@@ -197,13 +187,18 @@ public class AgenteBase extends Cuadricula{
         else{
             cambiarDireccionAzar();
         }
+        mapa=caminar(mapa);
         return mapa;
     } 
     protected Cuadricula[][] reaccionarARecurso(Cuadricula[][] mapa){
-        Cuadricula obs=mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]];
+        if (this.isRecurso()){
         setRecurso(true);
-        mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]].setCantidadRecurso(obs.getCantidadRecurso()-1);
+        mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]].reducirCantidadRecursos();
         cambiarDireccionIzquierdaArriba();
+        }
+        else{
+            cambiarDireccionAzar();
+        }
         mapa=caminar(mapa);
         return mapa;
     }

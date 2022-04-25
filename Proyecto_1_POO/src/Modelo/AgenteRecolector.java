@@ -18,7 +18,18 @@ public class AgenteRecolector extends AgenteBase{
         }
         return new AgenteRecolector(fila,columna);
     }
-    protected Cuadricula[][] reaccionarAAmenaza(Cuadricula[][] mapa){return mapa;}
+    protected Cuadricula[][] reaccionarAAmenaza(Cuadricula[][] mapa){
+        if(indiceDireccion==0)
+            setIndiceDireccion(2);
+        if(indiceDireccion==1)
+            setIndiceDireccion(3);
+        if(indiceDireccion==2)
+            setIndiceDireccion(0);
+        if(indiceDireccion==3)
+            setIndiceDireccion(1);
+        mapa=caminar(mapa);
+        return mapa;
+    }
     protected void reaccionarAAmenaza2(int direccion){
         if(direccion==0)
             cambiarDireccionDerechaAbajo();

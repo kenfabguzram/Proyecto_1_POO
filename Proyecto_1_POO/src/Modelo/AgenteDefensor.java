@@ -18,7 +18,10 @@ public class AgenteDefensor extends AgenteBase{
         }
         return new AgenteDefensor(fila,columna);
     }
-    protected Cuadricula[][] reaccionarAAmenaza(Cuadricula[][] mapa){return mapa;}
+    protected Cuadricula[][] reaccionarAAmenaza(Cuadricula[][] mapa){
+        mapa[fila+direccionesFila[indiceDireccion]][columna+direccionesColumna[indiceDireccion]].reducirVida();
+        return mapa;
+    }
     protected void reaccionarAAmenaza2(int direccion){
         if(direccion==0)
             cambiarDireccionIzquierdaArriba();
