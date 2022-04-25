@@ -11,7 +11,7 @@ public class Base extends Cuadricula{
         this.setBackground(Color.black);
         rnd=new Random();
         agentes=new ArrayDeque<AgenteBase>(); 
-        for(int i=0;i<1;i++){
+        for(int i=0;i<20;i++){
             int azar=rnd.nextInt(1 - 0 + 1) + 0;
             if(azar==0){
                 agentes.add(new AgenteDefensor(0,0));
@@ -24,13 +24,11 @@ public class Base extends Cuadricula{
     public Cuadricula[][] actionPerformed(Cuadricula[][] mapa){
             if (!agentes.isEmpty()){
                 if (mapa[0][1].isVacio()){
-                    AgenteBase agente=mapa[0][0].getAgente();
-                    mapa[1][0]=agente.getAgente();
+                    mapa[0][1]=mapa[0][0].getAgente();
                     mapa[0][1].setColumna(1);
                 }
                 if (mapa[1][0].isVacio()){
-                    AgenteBase agente=mapa[0][0].getAgente();
-                    mapa[1][0]=agente.getAgente();
+                    mapa[1][0]=mapa[0][0].getAgente();
                     mapa[1][0].setFila(1);
                 }
             }

@@ -26,6 +26,7 @@ public class AgenteBase extends Cuadricula{
         cambiarDireccionDerechaAbajo();
     }
     public Cuadricula[][] actionPerformed(Cuadricula[][] mapa){
+
         if(fila<49 & fila>0 & columna<49 & columna>0){
             mapa=validarCuadriculasAdyacentes(mapa,0,8,9,10,10);
         }
