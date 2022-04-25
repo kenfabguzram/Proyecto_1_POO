@@ -8,8 +8,6 @@ package Modelo;
  *
  * @author Kendall_Guzmán
  */
-public class AgenteBase {
-    int fila;
-    int columna;
+public class Recurso {
     
 }
