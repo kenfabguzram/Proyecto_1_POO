@@ -18,8 +18,8 @@ public class AgenteBase extends Cuadricula{
     public AgenteBase(int fila,int columna){
         super(fila,columna);
         setAgente(true);
-        direccionesFila=new int[]{-1,0,1,0};
-        direccionesColumna=new int[]{0,-1,0,1};
+        direccionesFila=new int[]{-1,0,1,0,0};
+        direccionesColumna=new int[]{0,-1,0,1,0};
         direccionesFila8=new int[]{-1,-1,-1,0,0,1,1,1};
         direccionesColumna8=new int[]{-1,0,1,-1,1,-1,0,1};
         rnd=new Random();
@@ -72,6 +72,9 @@ public class AgenteBase extends Cuadricula{
                 System.out.println(i);
                 System.out.println(direccionesFila8[i]);
                 System.out.println(direccionesColumna8[i]);
+                if(isRecurso() & isAgente()){
+                    cambiarDireccionIzquierdaArriba();
+                }
                 if(mapa[fila+direccionesFila8[i]][columna+direccionesColumna8[i]].isAgente()){
                     if (isRecurso()){
                         if(mapa[fila+direccionesFila8[i]][columna+direccionesColumna8[i]].isRecurso()){
@@ -181,12 +184,7 @@ public class AgenteBase extends Cuadricula{
         return mapa;
     }
     protected Cuadricula[][] reaccionarAAgenteSinRecurso(Cuadricula[][] mapa){
-        if(this.isRecurso()){
-            cambiarDireccionIzquierdaArriba();
-        }
-        else{
-            cambiarDireccionAzar();
-        }
+        cambiarDireccionAzar();
         mapa=caminar(mapa);
         return mapa;
     } 
